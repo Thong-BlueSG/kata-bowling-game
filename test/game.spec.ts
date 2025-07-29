@@ -1,6 +1,7 @@
 import { PinError } from "../src/errors/PinError";
 import { Game } from "../src/game";
 import { GameInterface } from "../src/game.interface";
+
 describe("Game", () => {
   let game: GameInterface;
 
@@ -14,6 +15,10 @@ describe("Game", () => {
     });
 
     it("should be failed when pin is over 10", () => {
+      expect(() => game.roll(11)).toThrow(PinError);
+    });
+
+    it("should be failed when knocked down pins is over 10", () => {
       expect(() => game.roll(11)).toThrow(PinError);
     });
   });
@@ -30,8 +35,8 @@ describe("Game", () => {
 
     it("should return a score according to total knocked down pins", () => {
       game.roll(1);
-      game.roll(1);
-      expect(game.score()).toEqual(2);
+      game.roll(3);
+      expect(game.score()).toEqual(4);
     });
   });
 });

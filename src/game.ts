@@ -10,7 +10,7 @@ export class Game implements GameInterface {
     }
 
     if (pins > 10) {
-      throw new PinError("Pins is negative");
+      throw new PinError("Pins is more than 10");
     }
 
     this.knockedPins += pins;
