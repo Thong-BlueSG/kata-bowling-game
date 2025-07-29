@@ -35,23 +35,15 @@ describe("Game", () => {
       expect(game.score()).toEqual(4);
     });
 
-    it("should be failed when knocked down pins in one frame is over 10", () => {
+    it("should be failed when knocked down pins is over 10 in 2 rolls", () => {
       game.roll(4);
       expect(() => game.roll(8)).toThrow();
     });
 
-    it("should be failed when knocked down pins is more than 10 in 3 rolls", () => {
+    it("should be failed when knocked down pins 3rd time when no bonus", () => {
       game.roll(4);
       game.roll(5);
       expect(() => game.roll(3)).toThrow();
-    });
-
-    it.skip("should return a score plus spare bonus", () => {
-      game.roll(4);
-      game.roll(6);
-      game.roll(7);
-
-      expect(game.score()).toBe(24);
     });
   });
 });

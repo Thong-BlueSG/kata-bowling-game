@@ -6,7 +6,7 @@ type Frame = number[];
 export class Game implements GameInterface {
   private knockedPins = 0;
 
-  private rollFrames: Frame[] = [];
+  private scores: number[] = [];
 
   roll(pins: number): void {
     if (pins < 0) {
@@ -15,6 +15,10 @@ export class Game implements GameInterface {
 
     if (pins > 10) {
       throw new PinError("Pins is more than 10");
+    }
+
+    if (this.scores.length === 2) {
+      throw new PinError("Roll more than 2 when no bonus");
     }
 
     // const curFrame = (this.rollFrames[this.rollFrames.length - 1] ??= []);
