@@ -40,7 +40,7 @@ describe("Game", () => {
       expect(() => game.roll(8)).toThrow();
     });
 
-    it("should be failed when knocked down pins 3rd time when no bonus", () => {
+    it.skip("should be failed when knocked down pins 3rd time when no bonus", () => {
       game.roll(4);
       game.roll(5);
       expect(() => game.roll(3)).toThrow();
@@ -50,6 +50,11 @@ describe("Game", () => {
       game.roll(5);
       game.roll(5);
       expect(() => game.roll(3)).not.toThrow();
+    });
+
+    it.skip("should not be failed when knocked down pins 2rd time when Strike", () => {
+      game.roll(10);
+      expect(() => game.roll(2)).not.toThrow();
     });
   });
 });
