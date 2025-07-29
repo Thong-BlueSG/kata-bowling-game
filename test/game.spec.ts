@@ -1,0 +1,37 @@
+import { PinError } from "../src/errors/PinError";
+import { Game } from "../src/game";
+import { GameInterface } from "../src/game.interface";
+describe("Game", () => {
+  let game: GameInterface;
+
+  beforeEach(() => {
+    game = new Game();
+  });
+
+  describe("roll", () => {
+    it("should be failed when pin is negative", () => {
+      expect(() => game.roll(-1)).toThrow(PinError);
+    });
+
+    it("should be failed when pin is over 10", () => {
+      expect(() => game.roll(11)).toThrow(PinError);
+    });
+  });
+
+  describe("score", () => {
+    it("should return 0 in the start of the game", () => {
+      expect(game.score()).toBe(0);
+    });
+
+    it("should return a score according to knocked down pins", () => {
+      game.roll(1);
+      expect(game.score()).toEqual(1);
+    });
+
+    it("should return a score according to total knocked down pins", () => {
+      game.roll(1);
+      game.roll(1);
+      expect(game.score()).toEqual(2);
+    });
+  });
+});
