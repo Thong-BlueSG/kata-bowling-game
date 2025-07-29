@@ -28,7 +28,9 @@ describe("Game", () => {
     it("should return 0 in the start of the game", () => {
       expect(game.score()).toBe(0);
     });
+  });
 
+  describe("Behavior", () => {
     it("should return a score according to knocked down pins", () => {
       game.roll(1);
       expect(game.score()).toEqual(1);
