@@ -45,5 +45,11 @@ describe("Game", () => {
       game.roll(5);
       expect(() => game.roll(3)).toThrow();
     });
+
+    it("should not be failed when knocked down pins 3rd time when Spares", () => {
+      game.roll(5);
+      game.roll(5);
+      expect(() => game.roll(3)).not.toThrow();
+    });
   });
 });

@@ -15,11 +15,11 @@ export class Game implements GameInterface {
       throw new PinError("Pins is more than 10");
     }
 
-    if (this.scores.length === 2) {
+    if (this.scores.length === 2 && this.score() !== 10) {
       throw new PinError("Roll more than 2 when no bonus");
     }
 
-    if (this.score() + pins > 10) {
+    if (this.scores.length < 2 && this.score() + pins > 10) {
       throw new PinError("Total score is more than 10");
     }
 
