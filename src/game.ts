@@ -4,8 +4,6 @@ import { GameInterface } from "./game.interface";
 type Frame = number[];
 
 export class Game implements GameInterface {
-  private knockedPins = 0;
-
   private scores: number[] = [];
 
   roll(pins: number): void {
@@ -21,26 +19,14 @@ export class Game implements GameInterface {
       throw new PinError("Roll more than 2 when no bonus");
     }
 
-    // const curFrame = (this.rollFrames[this.rollFrames.length - 1] ??= []);
-
-    // const prevScore = this.rollFrames[this.rollFrames.length - 1].reduce(
-    //   (prev, next) => prev + next,
-    //   0
-    // );
-
-    if (pins + this.knockedPins > 10) {
-      throw new PinError("Pins is more than 10");
+    if (this.score() + pins > 10) {
+      throw new PinError("Total score is more than 10");
     }
 
-    // curFrame.push(pins);
-    // if (pins === 10) {
-    //   this.rollFrames.push(0);
-    // }
-
-    this.knockedPins += pins;
+    this.scores.push(pins);
   }
 
   score(): number {
-    return this.knockedPins;
+    return this.scores.reduce((prev, next) => prev + next, 0);
   }
 }
