@@ -18,7 +18,7 @@ describe("Game", () => {
       expect(() => game.roll(11)).toThrow(PinError);
     });
 
-    it("should be failed when knocked down pins is over 10", () => {
+    it("should be failed when knocked down pins in one frame is over 10", () => {
       game.roll(4);
       expect(() => game.roll(8)).toThrow();
     });
